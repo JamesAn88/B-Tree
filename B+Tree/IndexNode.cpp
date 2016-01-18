@@ -16,3 +16,11 @@ IndexNode::~IndexNode(){
     delete [] m_children;
 }
 
+void IndexNode::insert(int key){
+    
+}
+
+TreeNode * IndexNode::search(int key){
+    int index = indexOfKey(key);
+    return m_children[index]->search(key);
+}

@@ -25,6 +25,10 @@ public:
     void increment();
     void decrement();
     TreeNode * getParent();
+    void setParent(TreeNode *p);
+    virtual void insert(int key) = 0;
+    virtual TreeNode * search(int key) = 0;
+    int indexOfKey(int key);
     
 };
 

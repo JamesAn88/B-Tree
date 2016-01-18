@@ -17,3 +17,16 @@ Leaf::Leaf(int order, Leaf *prev, Leaf *next): TreeNode(order){
     m_next = next;
 }
 
+Leaf::~Leaf(){
+    delete m_prev;
+    delete m_next;
+}
+
+void Leaf::insert(int key){
+    
+}
+
+TreeNode * Leaf::search(int key){
+    return this;
+}
+

@@ -10,7 +10,7 @@
 #define Leaf_hpp
 
 #include <stdio.h>
-#include_next "TreeNode.hpp"
+#include "TreeNode.hpp"
 
 class Leaf : public TreeNode {
     Leaf *m_prev;
@@ -25,6 +25,8 @@ public:
     
     void setPrev(Leaf * prev) {m_prev = prev;};
     void setNext(Leaf * next) {m_next = next;};
+    void insert(int key);
+    TreeNode * search(int key);
     
 };
 

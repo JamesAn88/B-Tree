@@ -20,5 +20,14 @@ BTree::~BTree(){
 void BTree::insert(int key){
     if (m_root == nullptr){
         m_root = new Leaf(m_order, nullptr, nullptr);
+        m_root->insert(key);
+    }
+}
+
+TreeNode * BTree::search(int key) {
+    if (m_root){
+        return m_root->search(key);
+    } else {
+        return nullptr;
     }
 }

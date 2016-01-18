@@ -18,6 +18,9 @@ class IndexNode : public TreeNode {
 public:
     IndexNode(int order);
     ~IndexNode();
+    void insert(int key);
+    TreeNode * search(int key);
+    
 };
 
 #endif /* IndexNode_hpp */

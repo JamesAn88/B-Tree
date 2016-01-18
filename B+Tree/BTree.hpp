@@ -23,5 +23,6 @@ public:
     ~BTree();
     void insert(int key);
     void remove(int key);
+    TreeNode * search(int key);
 };
 #endif /* BTree_hpp */
