@@ -10,6 +10,7 @@
 #define Leaf_hpp
 
 #include <stdio.h>
+#include <assert.h>
 #include "TreeNode.hpp"
 
 class Leaf : public TreeNode {
@@ -27,6 +28,7 @@ public:
     void setNext(Leaf * next) {m_next = next;};
     void insert(int key);
     TreeNode * search(int key);
+    Leaf * split(int key);
     
 };
 

@@ -23,12 +23,20 @@ int TreeNode::getOrder(){
     return m_order;
 }
 
+int TreeNode::getCount(){
+    return m_count;
+}
+
 void TreeNode::increment(){
     m_count++;
 }
 
 void TreeNode::decrement(){
     m_count--;
+}
+
+void TreeNode::setCount(int count){
+    m_count = count;
 }
 
 TreeNode * TreeNode::getParent(){
@@ -41,8 +49,24 @@ void TreeNode::setParent(TreeNode *p){
 
 int TreeNode::indexOfKey(int key){
     int i = 0;
-    while (i <= m_count && m_keys[i] < key) {
+    while (i < m_count && m_keys[i] < key) {
         i++;
     }
     return i;
+}
+
+int * TreeNode::getKeys(){
+    return m_keys;
+}
+
+void TreeNode::shiftAndInsert(int key){
+    assert(m_count < m_order);
+    int index = indexOfKey(key);
+    for (int i = m_count - 1; i >= index; i--){
+        m_keys[i+1] = m_keys[i];
+    }
+    m_keys[index] = key;
+    increment();
+    return;
+    
 }

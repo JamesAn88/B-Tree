@@ -10,6 +10,7 @@
 #define IndexNode_hpp
 
 #include <stdio.h>
+#include <assert.h>
 #include "TreeNode.hpp"
 
 class IndexNode : public TreeNode {

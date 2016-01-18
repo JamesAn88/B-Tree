@@ -23,10 +23,44 @@ Leaf::~Leaf(){
 }
 
 void Leaf::insert(int key){
-    
+    if (getCount() < getOrder()){
+        //just insert
+        shiftAndInsert(key);
+    } else {
+        //split
+        Leaf * l = split(key);
+        l->setPrev(this);
+        setNext(l);
+        TreeNode * p = getParent();
+        l->setParent(p);
+        
+        //copy up l->getKeys()[0] to parent
+    }
 }
 
 TreeNode * Leaf::search(int key){
     return this;
+}
+
+Leaf * Leaf::split(int key){
+    //split the leaf node caused by insert of key
+    assert(getCount() == getOrder());
+    int * keys = getKeys();
+    
+    Leaf * L = new Leaf(getOrder());
+    int half = getOrder() / 2;
+    for (int i = half; i < getOrder(); i ++){
+        L->insert(keys[i]);
+    }
+    setCount(half);
+    int index = indexOfKey(key);
+    if (index < half){
+        //new key belongs in first node
+        shiftAndInsert(key);
+    } else {
+        L->shiftAndInsert(key);
+    }
+    
+    return L;
 }
 
