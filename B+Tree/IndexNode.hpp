@@ -23,8 +23,10 @@ public:
     IndexNode(int order);
     ~IndexNode();
     TreeNode * search(int key);
+    virtual void insert(int key);
     virtual void insert(int key, TreeNode *oldNode, TreeNode *newNode);
     IndexNode * split(int key, TreeNode *left, TreeNode *right, int &middle);
+    void traverse();
 };
 
 #endif /* IndexNode_hpp */

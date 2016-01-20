@@ -19,6 +19,11 @@ IndexNode::~IndexNode(){
     delete [] m_children;
 }
 
+void IndexNode::insert(int key){
+    TreeNode * l = search(key);
+    l->insert(key);
+}
+
 void IndexNode::insert(int key, TreeNode *leftNode, TreeNode *rightNode){
     if (getCount() < getOrder()){
         int index = indexOfKey(key);
@@ -103,4 +108,8 @@ IndexNode * IndexNode::split(int key, TreeNode *left, TreeNode *right, int &midd
     delete[] merged;
     delete mergedNodes;
     return sibling;
+}
+
+void IndexNode::traverse(){
+    
 }

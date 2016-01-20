@@ -9,6 +9,7 @@
 #ifndef Leaf_hpp
 #define Leaf_hpp
 
+#include <iostream>
 #include <stdio.h>
 #include <assert.h>
 #include "TreeNode.hpp"
@@ -31,7 +32,7 @@ public:
     void insert(int key);
     TreeNode * search(int key);
     Leaf * split(int key);
-    
+    void traverse();
 };
 
 #endif /* Leaf_hpp */

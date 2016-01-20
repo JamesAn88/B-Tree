@@ -21,6 +21,11 @@ void BTree::insert(int key){
     if (m_root == nullptr){
         m_root = new Leaf(m_order, nullptr, nullptr);
         m_root->insert(key);
+    } else {
+        m_root->insert(key);
+        if (m_root->getParent() != nullptr){
+            m_root = m_root->getParent();
+        }
     }
 }
 

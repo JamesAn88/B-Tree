@@ -81,3 +81,10 @@ Leaf * Leaf::split(int key){
     return L;
 }
 
+void Leaf::traverse(){
+    int * keys = getKeys();
+    for (int i = 0 ; i < getCount(); i++){
+        std::cout << keys[i] << " ";
+    }
+}
+

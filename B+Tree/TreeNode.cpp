@@ -12,6 +12,7 @@ TreeNode::TreeNode(int order){
     m_parent = nullptr;
     m_order = order;
     m_keys = new int[m_order];
+    m_count = 0;
 }
 
 TreeNode::~TreeNode(){
@@ -71,6 +72,10 @@ void TreeNode::shiftAndInsert(int key){
     
 }
 
+void TreeNode::insert(int key){
+    assert(false);
+}
+
 void TreeNode::insert(int key, TreeNode *oldNode, TreeNode *newNode){
-    //never called, abstract class
+    assert(false);
 }

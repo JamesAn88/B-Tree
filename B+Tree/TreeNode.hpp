@@ -32,12 +32,12 @@ public:
     void setCount(int count);
     TreeNode * getParent();
     void setParent(TreeNode *p);
-    virtual void insert(int key);
+    virtual void insert(int key) = 0;
     virtual TreeNode * search(int key) = 0;
     virtual void insert(int key, TreeNode * oldNode, TreeNode * newNode);
     int indexOfKey(int key);
     int * getKeys();
-    
+    virtual void traverse() = 0;
     
 };
 
