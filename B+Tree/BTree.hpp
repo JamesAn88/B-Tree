@@ -25,5 +25,6 @@ public:
     void insert(int key);
     void remove(int key);
     TreeNode * search(int key); //get the leaf node the key should belong in
+    
 };
 #endif /* BTree_hpp */

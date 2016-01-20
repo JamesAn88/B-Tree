@@ -70,3 +70,7 @@ void TreeNode::shiftAndInsert(int key){
     return;
     
 }
+
+void TreeNode::insert(int key, TreeNode *oldNode, TreeNode *newNode){
+    //never called, abstract class
+}

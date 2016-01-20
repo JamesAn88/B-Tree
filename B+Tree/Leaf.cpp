@@ -32,9 +32,14 @@ void Leaf::insert(int key){
         l->setPrev(this);
         setNext(l);
         TreeNode * p = getParent();
+        if (p == nullptr){
+            p = new IndexNode(getOrder());
+            setParent(p);
+        }
         l->setParent(p);
         
-        //copy up l->getKeys()[0] to parent
+        //copy up l->getKeys()[0] to parent along with l
+        p->insert(l->getKeys()[0], this, l);
     }
 }
 
@@ -46,21 +51,33 @@ Leaf * Leaf::split(int key){
     //split the leaf node caused by insert of key
     assert(getCount() == getOrder());
     int * keys = getKeys();
-    
-    Leaf * L = new Leaf(getOrder());
-    int half = getOrder() / 2;
-    for (int i = half; i < getOrder(); i ++){
-        L->insert(keys[i]);
-    }
-    setCount(half);
+    int order = getOrder();
+    int * merged = new int[order + 1];
     int index = indexOfKey(key);
-    if (index < half){
-        //new key belongs in first node
-        shiftAndInsert(key);
-    } else {
-        L->shiftAndInsert(key);
+    
+    for(int i = 0; i < index; i++){
+        merged[i] = keys[i];
+    }
+    merged[index] = key;
+    
+    for (int i = index + 1; i < order + 1; i++){
+        merged[i] = keys[i - 1];
     }
     
+    Leaf * L = new Leaf(order);
+    int half = (order + 1) / 2;
+    setCount(half);
+    
+    for (int i = 0; i < half; i++){
+        keys[i] = merged[i];
+    }
+    
+    int * newNodeKeys = L->getKeys();
+    for (int i = half; i < order+1; i++){
+        newNodeKeys[i - half] = merged[i];
+        L->increment();
+    }
+    delete[] merged;
     return L;
 }
 

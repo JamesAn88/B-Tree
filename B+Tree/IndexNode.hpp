@@ -16,12 +16,15 @@
 class IndexNode : public TreeNode {
     TreeNode **m_children;
     
+protected:
+    virtual void shiftAndInsert(int key);
+    
 public:
     IndexNode(int order);
     ~IndexNode();
-    void insert(int key);
     TreeNode * search(int key);
-    
+    virtual void insert(int key, TreeNode *oldNode, TreeNode *newNode);
+    IndexNode * split(int key, TreeNode *left, TreeNode *right, int &middle);
 };
 
 #endif /* IndexNode_hpp */

@@ -12,10 +12,12 @@
 #include <stdio.h>
 #include <assert.h>
 #include "TreeNode.hpp"
+#include "IndexNode.hpp"
 
 class Leaf : public TreeNode {
     Leaf *m_prev;
     Leaf *m_next;
+    
     
 public:
     Leaf(int order);

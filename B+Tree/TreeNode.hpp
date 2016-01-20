@@ -20,7 +20,7 @@ class TreeNode {
     int *m_keys;
     
 protected:
-    void shiftAndInsert(int key);
+    virtual void shiftAndInsert(int key);
     
 public:
     TreeNode(int order);
@@ -32,8 +32,9 @@ public:
     void setCount(int count);
     TreeNode * getParent();
     void setParent(TreeNode *p);
-    virtual void insert(int key) = 0;
+    virtual void insert(int key);
     virtual TreeNode * search(int key) = 0;
+    virtual void insert(int key, TreeNode * oldNode, TreeNode * newNode);
     int indexOfKey(int key);
     int * getKeys();
     
