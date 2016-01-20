@@ -111,5 +111,7 @@ IndexNode * IndexNode::split(int key, TreeNode *left, TreeNode *right, int &midd
 }
 
 void IndexNode::traverse(){
-    
+    for (int i = 0; i < getCount() + 1; i++){
+        m_children[i]->traverse();
+    }
 }

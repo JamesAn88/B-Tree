@@ -36,3 +36,7 @@ TreeNode * BTree::search(int key) {
         return nullptr;
     }
 }
+
+void BTree::traverse(){
+    m_root->traverse();
+}
