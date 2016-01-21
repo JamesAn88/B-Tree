@@ -86,5 +86,6 @@ void Leaf::traverse(){
     for (int i = 0 ; i < getCount(); i++){
         std::cout << keys[i] << " ";
     }
+    std::cout << "endofnode ";
 }
 

@@ -7,15 +7,17 @@
 //
 
 #include <iostream>
+#include <stdlib.h>
 #include "BTree.hpp"
 
 int main(int argc, const char * argv[]) {
     // insert code here...
     std::cout << "Hello, World!\n";
-    int order = 6;
+    int order = 4;
     BTree t(order);
-    for (int i = 0; i < 100; i++){
-        t.insert(99 - i);
+    for (int i = 0; i<100; i++){
+        int inserted = rand() % 10000;
+        t.insert(inserted);
     }
     t.traverse();
     return 0;

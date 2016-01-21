@@ -49,8 +49,11 @@ void TreeNode::setParent(TreeNode *p){
 }
 
 int TreeNode::indexOfKey(int key){
+    if (m_count == 0){
+        return 0;
+    }
     int i = 0;
-    while (i < m_count && m_keys[i] < key) {
+    while (i < m_count && m_keys[i] <= key) {
         i++;
     }
     return i;

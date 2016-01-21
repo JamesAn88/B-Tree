@@ -84,10 +84,12 @@ IndexNode * IndexNode::split(int key, TreeNode *left, TreeNode *right, int &midd
     middle = merged[half];
     
     //split keys and children for left node
-    for (int i = 0; i < half + 1; i++){
+    for (int i = 0; i < half; i++){
+        keys[i] = merged[i];
         m_children[i] = mergedNodes[i];
     }
-    
+    m_children[half] = mergedNodes[half];
+
     for (int i = half + 1; i < order+1; i++){
         m_children[i] = nullptr;
     }
@@ -101,10 +103,11 @@ IndexNode * IndexNode::split(int key, TreeNode *left, TreeNode *right, int &midd
     for (int i = half + 1; i < order + 1; i++){
         s_keys[i - (half + 1)] = merged[i];
         s_children[i - (half + 1)] = mergedNodes[i];
+        s_children[i - (half + 1)]->setParent(sibling);
         sibling->increment();
     }
     s_children[order + 1 - (half + 1)] = mergedNodes[order+1];
-    
+    s_children[order + 1 - (half + 1)]->setParent(sibling);
     delete[] merged;
     delete mergedNodes;
     return sibling;
