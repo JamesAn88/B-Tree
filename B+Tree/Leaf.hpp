@@ -29,10 +29,13 @@ public:
     
     void setPrev(Leaf * prev) {m_prev = prev;};
     void setNext(Leaf * next) {m_next = next;};
-    void insert(int key);
+    virtual void insert(int key);
+    virtual void remove(int key);
     TreeNode * search(int key);
     Leaf * split(int key);
     void traverse();
+    bool contains(int key);
+    TreeNode * leftMost(int key);
 };
 
 #endif /* Leaf_hpp */

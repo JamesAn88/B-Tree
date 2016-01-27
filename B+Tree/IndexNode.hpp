@@ -25,6 +25,7 @@ public:
     TreeNode * search(int key);
     virtual void insert(int key);
     virtual void insert(int key, TreeNode *oldNode, TreeNode *newNode);
+    virtual void remove(int key);
     IndexNode * split(int key, TreeNode *left, TreeNode *right, int &middle);
     void traverse();
 };

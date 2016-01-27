@@ -38,7 +38,9 @@ public:
     int indexOfKey(int key);
     int * getKeys();
     virtual void traverse() = 0;
-    
+    int getMax(){return m_order*2;};
+    virtual void remove(int key) = 0;
+    virtual TreeNode * leftMost(int key);
 };
 
 #endif /* TreeNode_hpp */

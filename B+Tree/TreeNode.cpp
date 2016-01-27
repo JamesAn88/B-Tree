@@ -11,7 +11,7 @@
 TreeNode::TreeNode(int order){
     m_parent = nullptr;
     m_order = order;
-    m_keys = new int[m_order];
+    m_keys = new int[m_order*2];
     m_count = 0;
 }
 
@@ -64,7 +64,7 @@ int * TreeNode::getKeys(){
 }
 
 void TreeNode::shiftAndInsert(int key){
-    assert(m_count < m_order);
+    assert(m_count < getMax());
     int index = indexOfKey(key);
     for (int i = m_count - 1; i >= index; i--){
         m_keys[i+1] = m_keys[i];
@@ -81,4 +81,8 @@ void TreeNode::insert(int key){
 
 void TreeNode::insert(int key, TreeNode *oldNode, TreeNode *newNode){
     assert(false);
+}
+
+TreeNode *TreeNode::leftMost(int key){
+    return nullptr;
 }

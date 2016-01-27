@@ -23,7 +23,7 @@ Leaf::~Leaf(){
 }
 
 void Leaf::insert(int key){
-    if (getCount() < getOrder()){
+    if (getCount() < getMax()){
         //just insert
         shiftAndInsert(key);
     } else {
@@ -49,9 +49,9 @@ TreeNode * Leaf::search(int key){
 
 Leaf * Leaf::split(int key){
     //split the leaf node caused by insert of key
-    assert(getCount() == getOrder());
+    assert(getCount() == getMax());
     int * keys = getKeys();
-    int order = getOrder();
+    int order = getMax();
     int * merged = new int[order + 1];
     int index = indexOfKey(key);
     
@@ -64,7 +64,7 @@ Leaf * Leaf::split(int key){
         merged[i] = keys[i - 1];
     }
     
-    Leaf * L = new Leaf(order);
+    Leaf * L = new Leaf(getOrder());
     int half = (order + 1) / 2;
     setCount(half);
     
@@ -82,10 +82,39 @@ Leaf * Leaf::split(int key){
 }
 
 void Leaf::traverse(){
+    assert(getCount() <= getMax());
     int * keys = getKeys();
+    
     for (int i = 0 ; i < getCount(); i++){
         std::cout << keys[i] << " ";
     }
     std::cout << "endofnode ";
 }
 
+bool Leaf::contains(int key){
+    bool result = false;
+    int *keys = getKeys();
+    for (int i = 0; i < getCount(); i++){
+        if (keys[i] == key){
+            result = true;
+            break;
+        }
+    }
+    return result;
+}
+
+void Leaf::remove(int key){
+    
+}
+
+TreeNode *Leaf::leftMost(int key){
+    if (m_prev->contains(key)){
+        return m_prev->leftMost(key);
+    }
+    else {
+        if (contains(key)){
+            return this;
+        }
+    }
+    return nullptr;
+}

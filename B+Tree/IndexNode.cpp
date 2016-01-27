@@ -9,8 +9,8 @@
 #include "IndexNode.hpp"
 
 IndexNode::IndexNode(int order): TreeNode(order){
-    m_children = new TreeNode*[order+1];
-    for (int i = 0; i < order+1; i++){
+    m_children = new TreeNode*[order*2 + 1];
+    for (int i = 0; i < order*2+1; i++){
         m_children[i] = nullptr;
     }
 }
@@ -25,7 +25,7 @@ void IndexNode::insert(int key){
 }
 
 void IndexNode::insert(int key, TreeNode *leftNode, TreeNode *rightNode){
-    if (getCount() < getOrder()){
+    if (getCount() < getMax()){
         int index = indexOfKey(key);
         shiftAndInsert(key);
         m_children[index] = leftNode;
@@ -60,10 +60,10 @@ void IndexNode::shiftAndInsert(int key){
 }
 
 IndexNode * IndexNode::split(int key, TreeNode *left, TreeNode *right, int &middle){
-    assert(getCount() == getOrder());
+    assert(getCount() == getMax());
     
     //merge keys and children together
-    int order = getOrder();
+    int order = getMax();
     int *merged = new int[order + 1];
     int index = indexOfKey(key);
     int * keys = getKeys();
@@ -97,7 +97,7 @@ IndexNode * IndexNode::split(int key, TreeNode *left, TreeNode *right, int &midd
     setCount(half);
     
     //split keys and children for second node
-    IndexNode * sibling = new IndexNode(order);
+    IndexNode * sibling = new IndexNode(getOrder());
     int * s_keys = sibling->getKeys();
     TreeNode **s_children = sibling->m_children;
     for (int i = half + 1; i < order + 1; i++){
@@ -116,5 +116,13 @@ IndexNode * IndexNode::split(int key, TreeNode *left, TreeNode *right, int &midd
 void IndexNode::traverse(){
     for (int i = 0; i < getCount() + 1; i++){
         m_children[i]->traverse();
+    }
+}
+
+void IndexNode::remove(int key){
+    TreeNode *node = search(key);
+    node = node->leftMost(key);
+    if (node){
+        node->remove(key);
     }
 }
